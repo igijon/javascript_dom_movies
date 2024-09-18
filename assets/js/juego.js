@@ -7,9 +7,15 @@ const NELEMENTSPMOVIE = 3
 
 const btnMovieConfiguration = () => {
     const btnMovie = document.querySelector('#btnMovie')
+    const divPelicula = document.querySelector("#pelicula-caratula")
     btnMovie.addEventListener('click', () => {
         let movie = getElement(movieDeck)
-        console.log(movie)
+        
+        //Creamos el elemento de la película
+        const imgMovie = document.createElement('img');
+        imgMovie.src = `assets/movies/${movie}.jpg`
+        imgMovie.classList.add('elemento')
+        divPelicula.append(imgMovie)
     })
 }
 
