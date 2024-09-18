@@ -5,7 +5,7 @@
 const NMOVIES = 5
 const NELEMENTSPMOVIE = 3
 
-const btnMovieConfiguration = (movieDeck) => {
+const btnMovieConfiguration = () => {
     const btnMovie = document.querySelector('#btnMovie')
     const divPelicula = document.querySelector("#pelicula-caratula")
     btnMovie.addEventListener('click', () => {
@@ -18,13 +18,12 @@ const btnMovieConfiguration = (movieDeck) => {
         
         //Borramos los elementos que haya desplegados de la película antigua
         const elementsDiv = document.querySelector('#elementos-pelicula')
-        const oldElements = document.querySelectorAll('#elementos-pelicula .elemento')
         while(elementsDiv.firstChild) {
             elementsDiv.removeChild(elementsDiv.firstChild)
         }
+
         //Creamos de nuevo el montón de elementos
         elementDeck = getElementsDeck()
-
         //Creamos el elemento de la película
         const imgMovie = document.createElement('img');
         imgMovie.src = `assets/movies/${movie}.jpg`
@@ -33,10 +32,11 @@ const btnMovieConfiguration = (movieDeck) => {
     })
 }
 
-const btnElementConfiguration = (elementDeck) => {
+const btnElementConfiguration = () => {
     const btnElement = document.querySelector('#btnElement')
     const divGlobal = document.querySelector("#elementos-pelicula")
     btnElement.addEventListener('click', () => {
+        console.log(elementDeck)
         let element = getElement(elementDeck)
         //Creamos el elemento 
         const divElement = document.createElement('div')
@@ -55,7 +55,7 @@ const getMoviesDeck = () => {
     for(let i = 1; i <= NMOVIES; i++) {
         movieDeck.push("0"+i+"M")
     }
-    //Barajamos con un método dela librería Underscore. Esta librería ofrece muchas funciones,
+    //Barajamos con un método de la librería Underscore. Esta librería ofrece muchas funciones,
     //en este caso uso shuffle que recibe un arrayy lo devuelve de forma aleatoria
     movieDeck = _.shuffle(movieDeck)
     return movieDeck;
@@ -80,8 +80,7 @@ const getElement = (elementDeck) => {
     return tarjeta;
 }
 
-
 let movieDeck = getMoviesDeck()
 let elementDeck = getElementsDeck()
-btnMovieConfiguration(movieDeck)
-btnElementConfiguration(elementDeck)
+btnMovieConfiguration()
+btnElementConfiguration()
