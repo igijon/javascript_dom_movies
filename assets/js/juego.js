@@ -4,6 +4,15 @@
  */
 const NMOVIES = 5
 const NELEMENTSPMOVIE = 3
+
+const btnMovieConfiguration = () => {
+    const btnMovie = document.querySelector('#btnMovie')
+    btnMovie.addEventListener('click', () => {
+        let movie = getElement(movieDeck)
+        console.log(movie)
+    })
+}
+
 const getMoviesDeck = () => {
     let movieDeck = []
     for(let i = 1; i <= NMOVIES; i++) {
@@ -34,6 +43,7 @@ const getElement = (elementDeck) => {
     return tarjeta;
 }
 
+
 let movieDeck = getMoviesDeck()
 let elementDeck = getElementsDeck()
-let movie = getElement(movieDeck)
+btnMovieConfiguration()
