@@ -27,6 +27,13 @@ const getElementsDeck = () => {
     return elementDeck;
 }
 
+const getElement = (elementDeck) => {
+    if(elementDeck.length === 0)
+        throw 'No hay más tarjetas'
+    const tarjeta = elementDeck.pop()
+    return tarjeta;
+}
+
 let movieDeck = getMoviesDeck()
 let elementDeck = getElementsDeck()
-
+let movie = getElement(movieDeck)
