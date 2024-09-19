@@ -36,7 +36,6 @@ const btnElementConfiguration = () => {
     const btnElement = document.querySelector('#btnElement')
     const divGlobal = document.querySelector("#elementos-pelicula")
     btnElement.addEventListener('click', () => {
-        console.log(elementDeck)
         let element = getElement(elementDeck)
         //Creamos el elemento 
         const divElement = document.createElement('div')
@@ -46,8 +45,13 @@ const btnElementConfiguration = () => {
         imgElement.src = `assets/characters/${element}.jpg`
         imgElement.classList.add('recurso')
         divElement.append(imgElement)
+        divElement.addEventListener('mouseup', selectEventListener)
         divGlobal.appendChild(divElement)
     })
+}
+
+const selectEventListener = (e) => {
+    console.log(e.target)
 }
 
 const getMoviesDeck = () => {
