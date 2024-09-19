@@ -56,8 +56,8 @@ const selectEventListener = (e) => {
     let img = (e.target.tagName === 'DIV') ? e.target.querySelector('img') : e.target
     let elementName = img.src.split('/').pop() //Cojo el nombre de la imagen del elemento, sin la ruta completa
     isElementOfMovie(elementName, movieSelected) 
-        ? console.log('Es un elemento') 
-        : console.log('No es un elemento')
+        ? img.parentElement.classList.add('ok')
+        : img.parentElement.classList.add('fail')
 }
 
 const getMoviesDeck = () => {
