@@ -9,7 +9,7 @@ const btnMovieConfiguration = () => {
     const btnMovie = document.querySelector('#btnMovie')
     const divPelicula = document.querySelector("#pelicula-caratula")
     btnMovie.addEventListener('click', () => {
-        let movie = getElement(movieDeck)
+        movieSelected = getElement(movieDeck)
         
         //Borramos la película antigua
         let oldMovie = document.querySelector("#pelicula-caratula img")
@@ -26,7 +26,7 @@ const btnMovieConfiguration = () => {
         elementDeck = getElementsDeck()
         //Creamos el elemento de la película
         const imgMovie = document.createElement('img');
-        imgMovie.src = `assets/movies/${movie}.jpg`
+        imgMovie.src = `assets/movies/${movieSelected}.jpg`
         imgMovie.classList.add('elemento')
         divPelicula.append(imgMovie)
     })
@@ -51,7 +51,13 @@ const btnElementConfiguration = () => {
 }
 
 const selectEventListener = (e) => {
-    console.log(e.target)
+    //Obtenemos el src de la img
+    //Si pinchamos puede que estemos pinchando en el div o en la imagen, debemos obtener el src de la imagen
+    let img = (e.target.tagName === 'DIV') ? e.target.querySelector('img') : e.target
+    let elementName = img.src.split('/').pop() //Cojo el nombre de la imagen del elemento, sin la ruta completa
+    isElementOfMovie(elementName, movieSelected) 
+        ? console.log('Es un elemento') 
+        : console.log('No es un elemento')
 }
 
 const getMoviesDeck = () => {
@@ -84,7 +90,10 @@ const getElement = (elementDeck) => {
     return tarjeta;
 }
 
+const isElementOfMovie = (element, movie) => element.substring(0,2) === movie.substring(0,2) ? true : false
+
 let movieDeck = getMoviesDeck()
 let elementDeck = getElementsDeck()
+let movieSelected;
 btnMovieConfiguration()
 btnElementConfiguration()
